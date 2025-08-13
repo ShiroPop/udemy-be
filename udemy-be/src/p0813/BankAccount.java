@@ -62,6 +62,9 @@ public class BankAccount {
             System.out.println(this.owner + "이 " +target.owner + "에게 " + amount + "원 이체 완료!");
         }
     }
+    public String toString() {
+        return String.format("계좌번호: %s, 예금주: %s, 잔액: %d원", accountNumber, owner, this.getBalance());
+    }
 
     public static void main(String[] args) {
         BankAccount acc1 = new BankAccount("123-456", "홍길동", 1000);
@@ -71,7 +74,7 @@ public class BankAccount {
         acc1.withdraw(200);
         acc1.transferTo(acc2, 300);
 
-        System.out.println(acc1.getBalance());
-        System.out.println(acc2.getBalance());
+        System.out.println(acc1);
+        System.out.println(acc2);
     }
 }
