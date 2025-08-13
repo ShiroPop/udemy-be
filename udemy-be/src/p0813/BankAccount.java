@@ -30,7 +30,7 @@ public class BankAccount {
             return;
         }
         balance += amount;
-        System.out.println(amount + "원 입금 완료!");
+        System.out.println(this.owner + " 계좌에 " + amount + "원 입금 완료!");
     }
 
     public boolean withdraw(int amount) {
@@ -43,7 +43,7 @@ public class BankAccount {
             return false;
         }
         balance -= amount;
-        System.out.println(amount + "원 출금 완료!");
+        System.out.println(this.owner + " 계좌에서 " + amount + "원 출금 완료!");
         return true;
     }
 
@@ -52,22 +52,15 @@ public class BankAccount {
     }
 
     public void transferTo(BankAccount target, int amount) {
-        if (target == null) {
-            System.out.println("이체할 대상 계좌가 없습니다.");
-            return;
-        }
-        else if (target == this) {
+        System.out.println(this.owner + "이 " +target.owner + "에게 " + amount + "원 이체 중...");
+        if (target == this) {
             System.out.println("자기 자신에게 이체할 수 없습니다.");
             return;
         }
         if (this.withdraw(amount)) {
             target.deposit(amount);
-            System.out.println(amount + "원 이체 완료!");
+            System.out.println(this.owner + "이 " +target.owner + "에게 " + amount + "원 이체 완료!");
         }
-    }
-
-    public String toString() {
-        return String.format("계좌번호: %s, 예금주: %s, 잔액: %d원", accountNumber, owner, balance);
     }
 
     public static void main(String[] args) {
@@ -78,7 +71,7 @@ public class BankAccount {
         acc1.withdraw(200);
         acc1.transferTo(acc2, 300);
 
-        System.out.println(acc1);
-        System.out.println(acc2);
+        System.out.println(acc1.getBalance());
+        System.out.println(acc2.getBalance());
     }
 }
