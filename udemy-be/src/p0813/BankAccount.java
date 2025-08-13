@@ -27,18 +27,24 @@ public class BankAccount {
     public void deposit(int amount) {
         if (amount <= 0) {
             System.out.println("입금 금액은 0보다 커야 합니다.");
+            return;
         }
         balance += amount;
+        System.out.println(amount + "원 입금 완료!");
     }
 
-    public void withdraw(int amount) {
+    public boolean withdraw(int amount) {
         if (amount <= 0) {
-            System.out.println("입금 금액은 0보다 커야 합니다.");
+            System.out.println("출금 금액은 0보다 커야 합니다.");
+            return false;
         }
         else if (amount > balance) {
-            System.out.println("입금 금액은 0보다 커야 합니다.");
+            System.out.println("잔액이 부족하여 출금할 수 없습니다.");
+            return false;
         }
         balance -= amount;
+        System.out.println(amount + "원 출금 완료!");
+        return true;
     }
 
     public int getBalance() {
@@ -48,12 +54,16 @@ public class BankAccount {
     public void transferTo(BankAccount target, int amount) {
         if (target == null) {
             System.out.println("이체할 대상 계좌가 없습니다.");
+            return;
         }
         else if (target == this) {
             System.out.println("자기 자신에게 이체할 수 없습니다.");
+            return;
         }
-        this.withdraw(amount);
-        target.deposit(amount);
+        if (this.withdraw(amount)) {
+            target.deposit(amount);
+            System.out.println(amount + "원 이체 완료!");
+        }
     }
 
     public String toString() {
