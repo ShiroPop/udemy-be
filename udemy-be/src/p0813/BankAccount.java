@@ -1,22 +1,19 @@
 package p0813;
 
 public class BankAccount {
-    private String accountNumber;
-    private String owner;
+    private final String accountNumber;
+    private final String owner;
     private int balance;
 
     public BankAccount(String accountNumber, String owner, int balance) {
         if (accountNumber == null || accountNumber.isEmpty()) {
-            System.out.println("계좌번호는 비어있을 수 없습니다.");
-            return;
+            throw new IllegalArgumentException("계좌번호는 비어있을 수 없습니다.");
         }
         else if (owner == null || owner.isEmpty()) {
-            System.out.println("예금주는 비어있을 수 없습니다.");
-            return;
+            throw new IllegalArgumentException("예금주는 비어있을 수 없습니다.");
         }
         else if (balance < 0) {
-            System.out.println("초기 잔액은 0 이상이어야 합니다.");
-            return;
+            throw new IllegalArgumentException("초기 잔액은 0 이상이어야 합니다.");
         }
 
         this.accountNumber = accountNumber;
