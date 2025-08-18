@@ -5,10 +5,6 @@ import java.util.function.Function;
 public class GenericBox <T>{
     private T value;
 
-    public GenericBox() {
-        value = null;
-    }
-
     public GenericBox(T value) {
         this.value = value;
     }
