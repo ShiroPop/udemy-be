@@ -26,7 +26,7 @@ public class GenericBox <T>{
 
     public static <T> void swap(GenericBox<T> a, GenericBox<T> b) {
         if (a == null || b == null) {
-            throw new IllegalArgumentException("swap 대상이 null일 수 없습니다.")
+            throw new IllegalArgumentException("swap 대상이 null일 수 없습니다.");
         }
 
         T temp = a.getValue();
